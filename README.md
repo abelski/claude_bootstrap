@@ -10,7 +10,6 @@ generic enough to drop into a new project instead of rebuilding from scratch eac
 - **`.claude/skills/`**
   - `feature-analyst` — clarify → plan → approve → hand off to `ralph-implement`.
   - `ralph-implement` — bounded, resumable, self-correcting loop that executes a checklist plan.
-  - `frontend-design` — guidance for distinctive, non-generic UI work.
   - `sql` — ad-hoc query runner against a project's database.
   - `update-readme` — keep README.md in sync with real changes only.
   - `triage` — bulk-intake sibling to `feature-analyst`: fetch unresolved issues from this
@@ -36,7 +35,6 @@ generic enough to drop into a new project instead of rebuilding from scratch eac
 - **`docs/patterns.md`** — heavier patterns seen elsewhere (a tiered plan-and-verify loop with
   black-box verification, a deploy-safety protocol, agent-loop design notes) that are pointers to
   their source repo, not copies — too coupled to genericize until actually needed.
-- **`workflow-templates/`** — CI templates (Python lint+test, Python dependency audit).
 
 ## How to use it
 
