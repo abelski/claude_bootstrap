@@ -149,7 +149,11 @@ Once `ralph-implement` reports the plan done:
 
 1. Move the file: `plans/plan_<slug>.md` → `plans/implemented/plan_<slug>.md`.
 2. If this project keeps a changelog, append a row describing what changed.
-3. Any project-specific epilogue (announcing the change, notifying someone, closing a linked
+3. If this project maintains `specs/` (living current-behavior docs), spawn a `spec-writer`
+   subagent (`Agent(subagent_type: "spec-writer")`) per touched component to update
+   `specs/<component>.md` — see `.claude/agents/spec-writer.md`. Optional; skip if the project
+   doesn't use this convention.
+4. Any project-specific epilogue (announcing the change, notifying someone, closing a linked
    ticket) is the caller's responsibility, not this skill's — `ralph-implement` is
    pipeline-agnostic and never publishes or notifies anything on its own.
 

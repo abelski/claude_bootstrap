@@ -18,6 +18,9 @@ generic enough to drop into a new project instead of rebuilding from scratch eac
   - `ralph-reviewer` — read-only code-review gate (security, dead code, over-engineering,
     config-vs-hardcoded, architecture fit) — optional add-on, not wired into `ralph-implement` by
     default; see the note at the bottom of that skill.
+  - `spec-writer` — maintains `specs/<component>.md`, a living current-behavior doc (Gherkin
+    scenarios) written after a plan's Definition-of-Done gate passes — optional add-on, invoked
+    from `feature-analyst`'s wrap-up only if a project uses this convention.
 - **`.claude/commands/reset-workspace.md`** — delete generated output after explicit confirmation.
 - **`.claude/output-styles/talk-to-me.md`** — short, blunt, plain-language replies.
 - **`docs/skill-authoring.md`** — the Agent Skills spec convention used across these repos.
