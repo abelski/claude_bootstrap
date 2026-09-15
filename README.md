@@ -40,10 +40,3 @@ generic enough to drop into a new project instead of rebuilding from scratch eac
 
 Copy what you need into a new project's `.claude/` and `CLAUDE.md` — this repo isn't meant to be
 symlinked or installed as a dependency, it's a catalog to pull from and adapt per-project.
-
-## What got left out
-
-Anything tightly coupled to one project's internal APIs or business domain (internal-portal
-scrapers, chat-bot-specific scaffolding, a specific product's cloud/LLM-backend invariants).
-Those stay in their source repos; `docs/patterns.md` captures the generalizable shape of the more
-interesting ones without naming where they came from.
