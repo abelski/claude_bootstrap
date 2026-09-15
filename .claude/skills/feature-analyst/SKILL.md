@@ -102,6 +102,30 @@ marked done:
 ​```
 ```
 
+### UAT verification (optional)
+Only add this when the change has user-observable behavior worth testing black-box (a chat agent,
+an API, a UI flow) *and* the project has some way to drive the running app (a CLI, an HTTP call, a
+probe script). Skip it entirely for internal-only changes (a migration, a refactor, a backend job)
+with nothing to black-box test.
+
+When included, add `uat_rounds: 0` / `max_uat_rounds: 3` to the frontmatter alongside the other
+keys, and a section:
+
+```markdown
+## UAT verification
+
+**Instrument:** <the exact command/method a tester with zero codebase access can run as-is to
+drive the running app — a CLI invocation, a `curl` against a local endpoint, a probe script>
+
+**Scenarios:**
+1. <scripted user input/action>
+2. <next input/action>
+
+**Acceptance criteria:** (observable behavior only — no file, constant, or function name)
+- [ ] <criterion>
+- [ ] <criterion>
+```
+
 After writing the file, show the user the full plan content in chat, then use the
 `AskUserQuestion` tool to ask:
 
@@ -139,9 +163,31 @@ Skill(skill: "ralph-implement", args: "plans/plan_<slug>.md")
 `ralph-implement` owns all further checkbox flipping, validation retries, iteration/blocked-state
 bookkeeping, and the final Definition-of-Done gate. Do not duplicate any of that logic here.
 
-- If it reports `status: done` — proceed to Phase 5.
+- If it reports `status: done` — proceed to Phase 4.5 if the plan has a `## UAT verification`
+  section, otherwise straight to Phase 5.
 - If it reports `status: blocked` — relay its `## Blocked` section to the user verbatim and stop.
   Do not attempt to silently finish the plan yourself.
+
+## Phase 4.5 — Black-box UAT verification (only if the plan defines it)
+
+Reproduction/unit tests passing is not proof the behavior is right — they were written by the same
+mind that wrote the fix. This loop hands judgment to something that has never seen the code.
+
+1. Spawn a `uat-tester` subagent (`Agent(subagent_type: "uat-tester")`) with **exactly three
+   things**: the plan's `Instrument`, `Scenarios`, and `Acceptance criteria` — verbatim — plus a
+   verdict path (e.g. `plans/plan_<slug>-uat-round-<n>.md`). Never send it the plan file itself,
+   the diff, the tests, or your theory of the fix; its independence is the value.
+2. Read the verdict:
+   - **PASS** — proceed to Phase 5.
+   - **FAIL** — bump `uat_rounds` in the plan frontmatter, persist. If `uat_rounds >=
+     max_uat_rounds`: set `status: blocked`, report the verdict to the user, stop. Otherwise: hand
+     the tester's transcript and criteria **verbatim** (no added diagnosis of your own — you're the
+     mind that got it wrong the first time) to a `ralph-implementer` fix pass targeting this plan
+     file, then repeat step 1.
+   - **INCONCLUSIVE** (the instrument itself never produced a real answer — env/quota/network) —
+     doesn't consume a round; fix the environment and retry step 1.
+3. Never mark the plan done on a FAIL, and never relax a criterion to force a PASS — a criterion is
+   only edited when it was wrong about the desired behavior, and you say so if you do.
 
 ## Phase 5 — Wrap up
 

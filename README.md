@@ -21,6 +21,10 @@ generic enough to drop into a new project instead of rebuilding from scratch eac
   - `spec-writer` — maintains `specs/<component>.md`, a living current-behavior doc (Gherkin
     scenarios) written after a plan's Definition-of-Done gate passes — optional add-on, invoked
     from `feature-analyst`'s wrap-up only if a project uses this convention.
+  - `uat-tester` — black-box PASS/FAIL/INCONCLUSIVE verifier with zero codebase access, driving
+    the running app via a project-supplied instrument (CLI, HTTP call, probe script) — optional
+    add-on, invoked from `feature-analyst`'s Phase 4.5 only when a plan has a `## UAT
+    verification` section.
 - **`.claude/output-styles/talk-to-me.md`** — short, blunt, plain-language replies.
 - **`docs/skill-authoring.md`** — the Agent Skills spec convention used across these repos.
 - **`docs/patterns.md`** — heavier patterns seen elsewhere (a tiered plan-and-verify loop with
