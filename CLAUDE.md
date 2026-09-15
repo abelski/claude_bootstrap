@@ -89,10 +89,13 @@ keep only what fits the project, drop the rest.
 - Give features/changes a sequential number for traceability across plans, commits, and a
   changelog, if the project is long-lived enough to benefit from it.
 
-## Skill / slash-command authoring
+## Skill / command / agent authoring
 
-See [docs/skill-authoring.md](docs/skill-authoring.md) for the convention this machine's repos
-converged on (Agent Skills spec: frontmatter shape, directory layout, size limits).
+- Any command, skill, or agent created for this project lives in this project's own `.claude/`
+  directory (`.claude/commands/`, `.claude/skills/`, `.claude/agents/`) — project scope, not the
+  user's global `~/.claude/`. It ships with the repo and works for anyone who clones it.
+- See [docs/skill-authoring.md](docs/skill-authoring.md) for the convention this machine's repos
+  converged on (Agent Skills spec: frontmatter shape, directory layout, size limits).
 
 ## Useful patterns not copied here verbatim
 

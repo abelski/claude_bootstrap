@@ -3,6 +3,13 @@
 Convention used consistently across this machine's other repos, following the
 [Agent Skills specification](https://agentskills.io/specification).
 
+## Scope
+
+Anything authored for a specific project — a command, a skill, an agent — goes in that project's
+own `.claude/` directory, never the user-global `~/.claude/`. Project scope means it's checked
+into the repo, versioned with the code it applies to, and available to anyone who clones it;
+global scope is for genuinely cross-project tooling only.
+
 ## Required structure
 
 ```
