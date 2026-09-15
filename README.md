@@ -13,6 +13,12 @@ generic enough to drop into a new project instead of rebuilding from scratch eac
   - `frontend-design` — guidance for distinctive, non-generic UI work.
   - `sql` — ad-hoc query runner against a project's database.
   - `update-readme` — keep README.md in sync with real changes only.
+  - `triage` — bulk-intake sibling to `feature-analyst`: fetch unresolved issues from this
+    project's own tracker (source left for the project to plug in), filter spam/test noise, draft
+    a bugfix plan per confirmed issue into `plans/triage/active/`.
+  - `fix-issue-from-triage` — companion to `triage`: execute one drafted plan via
+    `ralph-implement`, confirm resolution with the user, then update the tracker (mechanism left
+    for the project to plug in) and move the plan to `implemented/`.
 - **`.claude/agents/`**
   - `ralph-implementer` — the mechanical worker `ralph-implement` spawns per pass.
   - `ralph-reviewer` — read-only code-review gate (security, dead code, over-engineering,
