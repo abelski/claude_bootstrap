@@ -4,6 +4,15 @@ Distilled from the CLAUDE.md files, skills, and agents across this machine's oth
 a **template to copy into a new project and trim**, not a rulebook this repo itself must obey —
 keep only what fits the project, drop the rest.
 
+## Project layout
+
+- Source code lives in `/src`.
+- Tests live in `/test`.
+- Scratch/temp files (intermediate output, one-off scripts, anything not meant to ship) go in
+  `/tmp` — gitignored, never committed.
+- Secrets and environment-specific config go in `.env` — gitignored, never committed, never
+  hard-coded elsewhere (see the secrets rule under Safety & guardrails).
+
 ## Before making changes
 
 - Plan before touching code, except for changes small enough that a plan would cost more than
