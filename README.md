@@ -21,7 +21,6 @@ generic enough to drop into a new project instead of rebuilding from scratch eac
   - `spec-writer` — maintains `specs/<component>.md`, a living current-behavior doc (Gherkin
     scenarios) written after a plan's Definition-of-Done gate passes — optional add-on, invoked
     from `feature-analyst`'s wrap-up only if a project uses this convention.
-- **`.claude/commands/reset-workspace.md`** — delete generated output after explicit confirmation.
 - **`.claude/output-styles/talk-to-me.md`** — short, blunt, plain-language replies.
 - **`docs/skill-authoring.md`** — the Agent Skills spec convention used across these repos.
 - **`docs/patterns.md`** — heavier patterns seen elsewhere (a tiered plan-and-verify loop with
